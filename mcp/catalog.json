@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "profiles": {"minimal":[],"github":["github"],"frontend":["playwright"],"browser":["playwright"],"security":[],"research":[]},
+  "policy": "task-scoped only"
+}

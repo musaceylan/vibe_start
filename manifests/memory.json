@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "projectStore": ".vibe/memory.jsonl",
+  "fields": ["scope","source","timestamp","confidence","expiresAt","tags","content"],
+  "forbidden": ["api keys","passwords","tokens","credentials","raw transcripts","temporary logs","duplicates"],
+  "retrieval": "task-filtered"
+}

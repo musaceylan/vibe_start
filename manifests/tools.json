@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "tiers": {
+    "always": ["git","rg","find","jq"],
+    "structural": ["Serena/LSP","ast-grep","ctags","tree-sitter"],
+    "security": ["snyk agent-scan","gitleaks","semgrep","codeql","trivy/osv-scanner"],
+    "browser": ["agent-browser","playwright"],
+    "refactoring": ["ast-grep","OpenRewrite","jscodeshift","ts-morph"],
+    "benchmark": ["hyperfine"]
+  }
+}

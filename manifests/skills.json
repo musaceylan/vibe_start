@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "format": "SKILL.md where supported",
+  "loading": "on-demand",
+  "providerCopies": false,
+  "security": "quarantine before activation",
+  "sources": ["vercel-labs/agent-skills","trailofbits/skills","nextlevelbuilder/ui-ux-pro-max-skill","MengTo/Skills","anthropics/skills (reference/license-aware)"]
+}

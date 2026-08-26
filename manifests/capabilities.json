@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "capabilities": {
+    "repository-understanding": {"primary":["ripgrep","Serena (symbol/LSP)","ast-grep"],"secondary":["ctags/LSP","repomap","code-review-graph"],"deep":["repo-harness","Understand-Anything"],"budget":"deterministic-and-symbol-first; escalate"},
+    "frontend": {"primary":["ui-ux-pro-max","vercel-agent-skills"],"secondary":["MengTo","web-interface-guidelines"],"verify":["agent-browser for cheap interaction","Playwright for deterministic E2E","accessibility"]},
+    "backend": {"primary":["project-native tooling","repo-harness"],"secondary":["spec-kit for large/ambiguous work"],"verify":["tests","static analysis"]},
+    "security": {"primary":["Trail of Bits skills","gitleaks","Semgrep","CodeQL","OSV/Trivy"],"secondary":["Snyk agent-scan for skills/MCP/config supply-chain gate"],"budget":"deterministic-first; agent security review never replaces scanners"},
+    "testing": {"primary":["project-native unit/integration"],"secondary":["agent-browser for low-context browser work","Playwright for E2E/visual QA"]},
+    "debugging": {"primary":["reproduce","observe","isolate","hypothesize","test","patch","verify"],"secondary":["repo-harness investigation"]},
+    "memory": {"primary":["project-local structured memory"],"secondary":["planning-with-files for complex task scratch state","Beads for durable dependency-aware work","Claude-Mem on Claude"],"budget":"retrieve-not-dump; benchmark memory systems before persistent activation"},
+    "specification": {"primary":["lightweight local spec"],"secondary":["GitHub Spec Kit"]},
+    "ai-ml": {"primary":["project-native eval/serving"],"secondary":["Orchestra AI-Research-SKILLs loaded per task","security/eval specialists"]},
+    "cpp": {"primary":["build system","clang tools","sanitizers","tests"],"secondary":["static analysis","profilers"]},
+    "workflow": {"primary":["Hermes global routing","repo-harness for repository execution"],"secondary":["Superpowers skills for planning/TDD/debugging/verification"],"guardrail":"never activate Superpowers as a competing global orchestrator"},
+    "context-engineering": {"primary":["Caveman skill for terse output","repo maps","deduplicated reads"],"secondary":["Caveman proxy only after local benchmark and privacy/security review"],"budget":"measure tokens per successful task, not compression alone"},
+    "documentation": {"primary":["project-local docs"],"secondary":["Context7 for current external library/framework docs"],"budget":"task-scoped only"},
+    "refactoring": {"primary":["surgical agent patch for local change","ast-grep for structural rewrites"],"secondary":["OpenRewrite for large migrations","jscodeshift/ts-morph for JS/TS"],"verify":["compiler/typecheck","tests","diff review","simplification review"]},
+    "discovery": {"primary":["official vendor repos","GitHub search","community research"],"secondary":["last30days-skill as discovery aid"],"guardrail":"discovery never auto-promotes or executes candidates"}
+  }
+}

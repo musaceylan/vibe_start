@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "bundles": {
+    "minimal": ["repository-understanding", "testing"],
+    "frontend": ["repository-understanding", "frontend", "testing", "security"],
+    "backend": ["repository-understanding", "backend", "testing", "security"],
+    "ai-ml": ["repository-understanding", "ai-ml", "testing", "security"],
+    "cpp": ["repository-understanding", "cpp", "testing", "security"],
+    "security": ["repository-understanding", "security", "testing"],
+    "full": ["repository-understanding", "frontend", "backend", "security", "testing", "debugging", "memory", "specification", "ai-ml", "cpp"]
+  }
+}

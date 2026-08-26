@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "agents": {
+    "claude": {"canonical": "AGENTS.md", "adapter": "config/claude/README.md", "policy": "thin-adapter"},
+    "codex": {"canonical": "AGENTS.md", "adapter": "config/codex/README.md", "policy": "thin-adapter"},
+    "gemini": {"canonical": "AGENTS.md", "adapter": "config/gemini/README.md", "policy": "thin-adapter"},
+    "cursor": {"canonical": "AGENTS.md", "adapter": "config/cursor/README.md", "policy": "thin-adapter"},
+    "copilot": {"canonical": "AGENTS.md", "adapter": "config/copilot/README.md", "policy": "thin-adapter"},
+    "hermes": {"canonical": "AGENTS.md", "adapter": "config/hermes/README.md", "policy": "thin-adapter"}
+  }
+}

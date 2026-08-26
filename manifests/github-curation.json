@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "evaluatedAt": "2026-08-26",
+  "evaluations": [
+    {"repo":"github/spec-kit","decision":"optional","score":92,"reason":"official structured specification workflow"},
+    {"repo":"vercel-labs/agent-skills","decision":"active","score":94,"reason":"frontend and React specialist source"},
+    {"repo":"Ancienttwo/repo-harness","decision":"active","score":88,"reason":"repository engineering workflow below Hermes"},
+    {"repo":"Egonex-AI/Understand-Anything","decision":"optional","score":82,"reason":"deep repository intelligence; escalation only"},
+    {"repo":"obra/superpowers","decision":"active-specialist","score":96,"reason":"planning/TDD/debug/review methodology; skills below Hermes only"},
+    {"repo":"JuliusBrussee/caveman","decision":"active","score":97,"reason":"token/context optimization; proxy opt-in until benchmark/security review"},
+    {"repo":"oraios/serena","decision":"active","score":97,"reason":"symbol/LSP code intelligence reduces broad file reads"},
+    {"repo":"snyk/agent-scan","decision":"active-gate","score":96,"reason":"supply-chain scanning for skills, MCP and agent configs"},
+    {"repo":"upstash/context7","decision":"active","score":94,"reason":"current version-specific external docs"},
+    {"repo":"vercel-labs/agent-browser","decision":"active","score":93,"reason":"low-context browser interaction"},
+    {"repo":"openrewrite/rewrite","decision":"active-specialist","score":95,"reason":"deterministic large-scale refactoring and migrations"},
+    {"repo":"tirth8205/code-review-graph","decision":"experimental","score":89,"reason":"benchmark graph/blast-radius value against Serena/repomap"},
+    {"repo":"gastownhall/beads","decision":"candidate","score":86,"reason":"durable dependency-aware task state"},
+    {"repo":"OthmanAdi/planning-with-files","decision":"candidate","score":88,"reason":"lightweight file-based working memory"},
+    {"repo":"Orchestra-Research/AI-Research-SKILLs","decision":"active-specialist","score":91,"reason":"AI/ML specialist source; task-scoped only"},
+    {"repo":"mvanhorn/last30days-skill","decision":"candidate","score":87,"reason":"ecosystem discovery input; never auto-promote"},
+    {"repo":"GSD/BMAD/Claude Flow/OMC global control planes","decision":"rejected","score":0,"reason":"overlap with Hermes global orchestration"}
+  ]
+}
