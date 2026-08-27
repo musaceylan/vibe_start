@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "autoPromotion": false,
+  "principle": "discovery is untrusted input; promotion requires evidence, overlap ownership and human approval",
+  "gates": [
+    {"id":"provenance","required":true,"check":"official or canonical upstream source identified"},
+    {"id":"license","required":true,"check":"license and redistribution/install implications reviewed"},
+    {"id":"maintenance","required":true,"check":"activity, releases/issues and archival state reviewed"},
+    {"id":"supply-chain","required":true,"check":"skills/hooks/MCP/install scripts scanned as untrusted executable or prompt input"},
+    {"id":"overlap","required":true,"check":"capability owner, conflictsWith, replaces and activation mode assigned"},
+    {"id":"portability","required":true,"check":"provider-specific assumptions identified; universal skill extraction preferred"},
+    {"id":"benchmark","required":"when behavior/context/runtime changes","check":"compare task success and defects as well as token/cost improvements"},
+    {"id":"pin","required":"when install=true","check":"exact 40-character commit pin recorded"},
+    {"id":"human-approval","required":true,"check":"review proposal before activation or install"}
+  ],
+  "decisions": ["active","active-specialist","active-reference","optional","candidate","benchmark-candidate","experimental","rejected"],
+  "promotionOrder": ["candidate","benchmark-candidate","optional","active-specialist","active"],
+  "neverAutomatic": ["global orchestrator replacement","credentialed MCP activation","hooks that intercept tool calls","memory system replacement","context proxy replacement","destructive tooling"]
+}
