@@ -25,6 +25,7 @@
     {"repository":"openai/codex","category":"agents","status":"reference","commit":null,"install":false,"loadPolicy":"reference-only"},
     {"repository":"anthropics/claude-code","category":"agents","status":"reference","commit":null,"install":false,"loadPolicy":"reference-only"},
     {"repository":"nextlevelbuilder/ui-ux-pro-max-skill","category":"frontend","status":"active","commit":"8bd29e775453ebcae52b6e6514fbf134df0c5770","install":true,"loadPolicy":"frontend-baseline:.claude/skills/ui-ux-pro-max"},
+    {"repository":"Leonxlnx/taste-skill","category":"frontend","status":"active-specialist","commit":"ccbc15639c97057cbfcf32ecebc38ef716e4bb37","install":true,"loadPolicy":"frontend-task:skills/taste-skill; variants-on-demand"},
     {"repository":"VoltAgent/awesome-design-md","category":"frontend","status":"active-reference","commit":"8147538b4226ae41e2487a9179e3bcc1f68e8554","install":false,"loadPolicy":"on-demand-design-reference"},
     {"repository":"MengTo/Skills","category":"frontend","status":"optional","commit":null,"install":false,"loadPolicy":"on-demand"},
     {"repository":"github/codeql","category":"security","status":"reference","commit":null,"install":false,"loadPolicy":"security-profile"},
