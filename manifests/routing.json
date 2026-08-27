@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "profileThreshold": 2,
+  "capabilityThreshold": 2,
+  "profiles": {
+    "frontend": {"weight":3,"patterns":["frontend","react","next.js","nextjs","landing","ui\\b","ux\\b","css","tailwind","animation","framer","gsap","webgl","storybook"]},
+    "ai-ml": {"weight":3,"patterns":["\\brag\\b","llm","embedding","mlops","inference","fine.?tun","model eval","prompt eval","deep.?eval","promptfoo","mlflow"]},
+    "cpp": {"weight":3,"patterns":["c\\+\\+","cmake","embedded","automotive","clang","conan","vcpkg","cuda"]},
+    "security": {"weight":3,"patterns":["security","secret","permission","vulnerab","threat","sast","cloud posture","compliance"]},
+    "backend": {"weight":3,"patterns":["backend","api\\b","database","queue","microservice","server","grpc","kafka"]}
+  },
+  "capabilities": {
+    "frontend": {"weight":3,"patterns":["frontend","react","next","landing","ui\\b","ux\\b","css","tailwind","component","design system"]},
+    "testing": {"weight":2,"patterns":["test","e2e","integration","unit test","visual regression","playwright","storybook"]},
+    "security": {"weight":3,"patterns":["security","auth","secret","permission","vulnerab","threat","compliance","sast"]},
+    "debugging": {"weight":2,"patterns":["debug","bug","failure","crash","runtime","network error","performance issue","devtools"]},
+    "marketing": {"weight":2,"patterns":["marketing","cro","copywriting","growth","conversion","analytics","seo","geo","aeo"]},
+    "ai-ml": {"weight":3,"patterns":["rag","llm","model","embedding","mlops","inference","eval","promptfoo","deepeval","mlflow"]},
+    "cpp": {"weight":3,"patterns":["c\\+\\+","cmake","embedded","clang","cuda","automotive"]},
+    "backend": {"weight":3,"patterns":["backend","api\\b","database","queue","server","microservice","grpc"]},
+    "refactoring": {"weight":2,"patterns":["refactor","migration","rewrite","simplif","reduce code","less code"]},
+    "code-review": {"weight":2,"patterns":["code review","review this","review pr","review diff"]},
+    "agent-ui": {"weight":2,"patterns":["agent ui","ag-ui","copilotkit","generative ui"]},
+    "voice-agents": {"weight":2,"patterns":["voice agent","realtime audio","pipecat","speech agent"]},
+    "design-artifacts": {"weight":2,"patterns":["diagram","architecture diagram","svg diagram","editorial diagram"]},
+    "context-engineering": {"weight":2,"patterns":["context window","token optimization","context compression","context engineering","tool output","compaction"]},
+    "documentation": {"weight":2,"patterns":["documentation","docs","knowledge base","local search"]}
+  },
+  "specialists": {
+    "greensock/gsap-skills": {"weight":4,"patterns":["\\bgsap\\b","scrolltrigger","scroll trigger","timeline animation"]},
+    "AgriciDaniel/claude-seo": {"weight":4,"patterns":["\\bseo\\b","\\bgeo\\b","\\baeo\\b","schema markup","search ranking"]},
+    "pbakaus/impeccable": {"weight":4,"patterns":["design audit","ui audit","polish ui","frontend audit","accessibility audit","responsive audit"]},
+    "microsoft/playwright": {"weight":4,"patterns":["playwright","e2e","visual regression","browser test"]},
+    "ChromeDevTools/chrome-devtools-mcp": {"weight":4,"patterns":["devtools","network waterfall","runtime performance","browser runtime","console error"]},
+    "promptfoo/promptfoo": {"weight":4,"patterns":["promptfoo","prompt comparison","prompt eval","red team","agent red team"]},
+    "confident-ai/deepeval": {"weight":4,"patterns":["deepeval","rag eval","llm eval","faithfulness","answer relevancy"]},
+    "DietrichGebert/ponytail": {"weight":4,"patterns":["simplify","reduce code","less code","remove abstraction","minimal implementation"]},
+    "cathrynlavery/diagram-design": {"weight":4,"patterns":["diagram","architecture diagram","editorial diagram"]},
+    "mksglu/context-mode": {"weight":4,"patterns":["context-mode","tool output compression","sandbox tool output","context offload"]},
+    "muratcankoylan/Agent-Skills-for-Context-Engineering": {"weight":4,"patterns":["context engineering","context degradation","long horizon prompting","harness engineering","memory architecture"]},
+    "affaan-m/ECC": {"weight":4,"patterns":["ecc skill","ecc procedure","ecc workflow"],"mode":"reference-selective"}
+  },
+  "risk": {
+    "high": ["production","credential","secret","database migration","delete","force push","security","payment","auth"],
+    "medium": ["refactor","dependency upgrade","schema change","migration","release","deploy"],
+    "default": "low"
+  },
+  "contextBudget": {
+    "low": {"maxTier":3,"guidance":"T0-T3; deterministic inspection first"},
+    "medium": {"maxTier":4,"guidance":"allow one specialist after evidence"},
+    "high": {"maxTier":5,"guidance":"allow deep specialist/research with explicit verification"}
+  }
+}
