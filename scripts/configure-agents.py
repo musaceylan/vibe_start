@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Safely create/update thin agent adapters without replacing project policy.
 
-The canonical policy remains AGENTS.md. This tool only installs provider-native
-adapter files when the target is supported and never overwrites an existing
-file unless --apply is provided. Existing files are backed up before change.
+The canonical policy remains AGENTS.md. Provider-native agents that already read
+AGENTS.md get no duplicate file. Existing provider files are preserved and
+backed up before explicit changes.
 """
 from __future__ import annotations
 
@@ -13,10 +13,10 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
-ADAPTERS = {
+FILE_ADAPTERS = {
     "claude": (
         "CLAUDE.md",
-        "# Claude Code adapter\n\nRead and obey `AGENTS.md` first. This file contains Claude-specific routing only.\nDo not duplicate or weaken repository policy. Use project skills/hooks only when they are explicitly configured and task-relevant.\n",
+        "# Claude Code adapter\n\nRead and obey `AGENTS.md` first. This file contains Claude-specific routing only.\nDo not duplicate or weaken repository policy. Use project skills/hooks only when explicitly configured and task-relevant.\n",
     ),
     "gemini": (
         "GEMINI.md",
@@ -32,6 +32,15 @@ ADAPTERS = {
     ),
 }
 
+NATIVE_ADAPTERS = {
+    "codex": "Codex consumes AGENTS.md and can discover repository .agents/skills; no duplicate policy file required.",
+    "kimi": "Kimi consumes AGENTS.md and discovers repository .agents/skills; no duplicate policy file required.",
+    "qwen": "Qwen reads AGENTS.md directly. Preserve any existing QWEN.md; use `vibe skills --providers qwen --apply` for skill projection.",
+    "hermes": "Hermes remains the orchestrator bridge and should route from AGENTS.md/manifests without adding a competing project policy file.",
+    "generic": "Generic agents should read START_HERE.md then AGENTS.md; no provider file is generated.",
+}
+SUPPORTED = tuple(FILE_ADAPTERS) + tuple(NATIVE_ADAPTERS)
+
 
 def backup(path: Path) -> Path:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -40,16 +49,14 @@ def backup(path: Path) -> Path:
     return dst
 
 
-def write_adapter(root: Path, agent: str, apply: bool) -> dict:
-    rel, desired = ADAPTERS[agent]
+def write_file_adapter(root: Path, agent: str, apply: bool) -> dict:
+    rel, desired = FILE_ADAPTERS[agent]
     path = root / rel
     result = {"agent": agent, "path": rel, "action": "noop"}
     if path.exists():
         current = path.read_text(encoding="utf-8")
         if current == desired:
             return result
-        # Existing project instructions are authoritative. Never replace them
-        # automatically; only append a tiny bridge when explicitly applying.
         if "AGENTS.md" in current:
             result["action"] = "preserved-existing"
             return result
@@ -67,10 +74,21 @@ def write_adapter(root: Path, agent: str, apply: bool) -> dict:
     return result
 
 
+def adapter_result(root: Path, agent: str, apply: bool) -> dict:
+    if agent in NATIVE_ADAPTERS:
+        return {
+            "agent": agent,
+            "path": "AGENTS.md",
+            "action": "native-no-write",
+            "note": NATIVE_ADAPTERS[agent],
+        }
+    return write_file_adapter(root, agent, apply)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Safely bootstrap agent-native project adapters")
     parser.add_argument("target", nargs="?", default=".")
-    parser.add_argument("--agents", default=",".join(ADAPTERS), help="comma-separated supported agents")
+    parser.add_argument("--agents", default=",".join(SUPPORTED), help="comma-separated supported agents")
     parser.add_argument("--apply", action="store_true", help="perform writes; default is dry-run")
     args = parser.parse_args()
 
@@ -79,7 +97,7 @@ def main() -> int:
         parser.error(f"target directory does not exist: {root}")
 
     selected = [x.strip().lower() for x in args.agents.split(",") if x.strip()]
-    unknown = sorted(set(selected) - set(ADAPTERS))
+    unknown = sorted(set(selected) - set(SUPPORTED))
     if unknown:
         parser.error("unsupported agent adapter(s): " + ", ".join(unknown))
 
@@ -88,8 +106,15 @@ def main() -> int:
         print(json.dumps({"ok": False, "error": "AGENTS.md is required before provider adapters"}, indent=2))
         return 2
 
-    results = [write_adapter(root, agent, args.apply) for agent in selected]
-    print(json.dumps({"ok": True, "mode": "apply" if args.apply else "dry-run", "target": str(root), "results": results}, indent=2))
+    results = [adapter_result(root, agent, args.apply) for agent in selected]
+    print(json.dumps({
+        "ok": True,
+        "mode": "apply" if args.apply else "dry-run",
+        "target": str(root),
+        "canonicalPolicy": "AGENTS.md",
+        "canonicalSkills": ".agents/skills",
+        "results": results,
+    }, indent=2))
     return 0
 
 
