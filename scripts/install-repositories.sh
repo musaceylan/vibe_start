@@ -31,12 +31,37 @@ for repo in manifest['repositories']:
         raise SystemExit('unpinned: ' + repo['repository'])
     selected.append(repo)
 
+
+def normalized_remote(value: str) -> str:
+    value = value.strip().removesuffix('.git').lower()
+    value = value.replace('git@github.com:', 'https://github.com/')
+    return value
+
+
+def repository_directory(repository: str) -> pathlib.Path:
+    owner, name = repository.split('/', 1)
+    canonical = dest / f'{owner}__{name}'
+    if canonical.exists():
+        return canonical
+    legacy = dest / name
+    if legacy.exists() and (legacy / '.git').exists():
+        try:
+            origin = subprocess.check_output(
+                ['git', '-C', str(legacy), 'remote', 'get-url', 'origin'], text=True
+            )
+            expected = f'https://github.com/{repository}'
+            if normalized_remote(origin) == normalized_remote(expected):
+                print(f'reusing legacy directory {legacy} for {repository}')
+                return legacy
+        except subprocess.CalledProcessError:
+            pass
+    return canonical
+
+
 for repo in selected:
     repository = repo['repository']
     sha = repo['commit']
-    owner, name = repository.split('/', 1)
-    # owner__repo prevents collisions such as anthropics/skills vs mattpocock/skills.
-    directory = dest / f'{owner}__{name}'
+    directory = repository_directory(repository)
     if not directory.exists():
         subprocess.run([
             'git', 'clone', '--filter=blob:none', '--no-checkout',
