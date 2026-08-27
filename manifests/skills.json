@@ -1,16 +1,28 @@
 {
-  "schemaVersion": 1,
-  "format": "SKILL.md where supported",
-  "loading": "hybrid",
+  "schemaVersion": 2,
+  "format": "Agent Skills / SKILL.md",
+  "loading": "progressive-disclosure",
+  "canonicalRoot": ".agents/skills",
   "providerCopies": false,
-  "security": "quarantine before activation",
+  "projection": "symlink provider views to canonical project skill entries when supported",
+  "security": "quarantine before activation; external skill instructions never override AGENTS.md",
   "alwaysActive": [
-    {"source":"anthropics/skills","skill":"skills/frontend-design"},
-    {"source":"nextlevelbuilder/ui-ux-pro-max-skill","skill":".claude/skills/ui-ux-pro-max"}
+    {"source":"anthropics/skills","skill":"skills/frontend-design","scope":["frontend"]},
+    {"source":"nextlevelbuilder/ui-ux-pro-max-skill","skill":".claude/skills/ui-ux-pro-max","scope":["frontend"]}
+  ],
+  "portableSkills": [
+    {"name":"anthropic-frontend-design","source":"anthropics/skills","path":"skills/frontend-design","profiles":["frontend","full"]},
+    {"name":"ui-ux-pro-max","source":"nextlevelbuilder/ui-ux-pro-max-skill","path":".claude/skills/ui-ux-pro-max","profiles":["frontend","full"]},
+    {"name":"taste-skill","source":"Leonxlnx/taste-skill","path":"skills/taste-skill","profiles":["frontend","full"],"note":"v2 experimental; specialized variants remain on-demand"},
+    {"name":"vercel-web-design-guidelines","source":"vercel-labs/agent-skills","path":"skills/web-design-guidelines","profiles":["frontend","full"]},
+    {"name":"vercel-react-best-practices","source":"vercel-labs/agent-skills","path":"skills/react-best-practices","profiles":["frontend","full"]},
+    {"name":"vercel-composition-patterns","source":"vercel-labs/agent-skills","path":"skills/composition-patterns","profiles":["frontend","full"]},
+    {"name":"vercel-react-native-skills","source":"vercel-labs/agent-skills","path":"skills/react-native-skills","profiles":["mobile","full"],"optional":true}
   ],
   "frontendTaskSkills": [
-    {"source":"Leonxlnx/taste-skill","skill":"skills/taste-skill","note":"v2 experimental; load for frontend design/build tasks; specialized variants on-demand"},
-    {"source":"greensock/gsap-skills","note":"load for GSAP animation/motion tasks only"}
+    {"source":"Leonxlnx/taste-skill","skill":"skills/taste-skill","note":"load for frontend design/build; variants only when task matches"},
+    {"source":"greensock/gsap-skills","note":"load for GSAP animation/motion only"},
+    {"source":"pbakaus/impeccable","note":"verification/audit specialist; do not use as another always-on design philosophy"}
   ],
   "specialistSources": [
     "mattpocock/skills",
@@ -18,17 +30,20 @@
     "coreyhaines31/marketingskills",
     "cathrynlavery/diagram-design",
     "AgriciDaniel/claude-seo",
-    "google/skills"
+    "google/skills",
+    "muratcankoylan/Agent-Skills-for-Context-Engineering",
+    "affaan-m/ECC (selective procedures only)"
   ],
-  "providerCatalogs": [
-    "anthropics/claude-plugins-official"
-  ],
+  "providerCatalogs": ["anthropics/claude-plugins-official"],
   "sources": [
     "vercel-labs/agent-skills",
     "trailofbits/skills",
     "nextlevelbuilder/ui-ux-pro-max-skill",
     "Leonxlnx/taste-skill",
     "greensock/gsap-skills",
+    "pbakaus/impeccable",
+    "muratcankoylan/Agent-Skills-for-Context-Engineering",
+    "affaan-m/ECC",
     "mattpocock/skills",
     "DietrichGebert/ponytail",
     "coreyhaines31/marketingskills",
