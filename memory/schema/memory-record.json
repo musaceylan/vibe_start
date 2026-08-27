@@ -1,1 +1,25 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["scope","source","timestamp","confidence","tags","content"],"properties":{"scope":{"type":"string"},"source":{"type":"string"},"timestamp":{"type":"string"},"confidence":{"type":"number","minimum":0,"maximum":1},"expiresAt":{"type":["string","null"]},"tags":{"type":"array","items":{"type":"string"}},"content":{"type":"string"}}}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["scope","source","timestamp","confidence","tags","content"],
+  "properties": {
+    "scope": {"type":"string"},
+    "source": {"type":"string"},
+    "timestamp": {"type":"string"},
+    "confidence": {"type":"number","minimum":0,"maximum":1},
+    "kind": {"type":"string","enum":["fact","decision","preference","failed-attempt","architecture-constraint","task-state","reference"]},
+    "project": {"type":["string","null"]},
+    "branch": {"type":["string","null"]},
+    "evidence": {"type":"array","items":{"type":"string"}},
+    "supersedes": {"type":"array","items":{"type":"string"}},
+    "validUntil": {"type":["string","null"]},
+    "expiresAt": {"type":["string","null"]},
+    "lastVerified": {"type":["string","null"]},
+    "sensitivity": {"type":"string","enum":["public","project","private","secret"]},
+    "verificationStatus": {"type":"string","enum":["unverified","verified","stale","disputed"]},
+    "retrievalHints": {"type":"array","items":{"type":"string"}},
+    "writeReason": {"type":["string","null"]},
+    "tags": {"type":"array","items":{"type":"string"}},
+    "content": {"type":"string"}
+  }
+}
