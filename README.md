@@ -1,23 +1,83 @@
 # vibe_start
-Universal, low-context coding intelligence layer for Claude Code, Codex, Gemini CLI, Cursor, Copilot, Hermes and future AGENTS.md-compatible agents.
 
-`vibe_start` is a curated capability router, not an awesome-list and not a second orchestrator. Broad knowledge lives here; runtime loads only the smallest task-relevant bundle.
+Universal, low-context engineering layer for **Claude Code, Codex, Kimi Code CLI, Qwen Code, Gemini CLI, Cursor, Copilot, Hermes**, and future `AGENTS.md` / Agent-Skills-compatible coding agents.
+
+`vibe_start` is a **capability router and compatibility layer**, not an awesome-list and not a second orchestrator. It curates broad knowledge, but runtime loads only the smallest task-relevant capabilities and specialists.
+
+## Architecture
+
+```text
+                         vibe_start
+                             |
+               +-------------+-------------+
+               |                           |
+           AGENTS.md                 .agents/skills/
+       canonical policy            canonical skills
+               |                           |
+        scored capability             native / projected
+            routing                    provider views
+               |                           |
+      Hermes when present       Codex  Kimi  Qwen  Claude ...
+               |
+        task specialists
+               |
+     independent verification
+```
+
+Core rules:
+
+- **One control plane:** Hermes when present; otherwise the host agent routes from the manifests.
+- **Installed != loaded.** Installation is profile-aware; activation is task-aware.
+- **Overlap != exclusion.** Assign one owner, specialists, benchmark candidates, and explicit non-coactivation rules.
+- **Canonical portable skills:** `.agents/skills/`. Codex and Kimi consume it natively; Qwen receives a safe `.qwen/skills/` projection.
+- **Provider adapters stay thin.** They point to `AGENTS.md` rather than duplicating policy.
+- **Progressive disclosure:** deterministic inspection first, then symbols/AST, then specialist/deep context only when evidence justifies it.
+- **Creation and verification are separate.** Example: frontend create -> motion -> deterministic audit -> Playwright/accessibility verification.
+- **Third-party skills/hooks/MCP/repos are untrusted supply-chain input.** Promotion is gated and never automatic.
 
 ## Start
-1. Read `START_HERE.md` and `AGENTS.md`.
-2. Run `./vibe route --task "<task>"`.
-3. Load only the returned capability/profile information.
-4. Prefer deterministic inspection before semantic/LLM-heavy analysis.
 
-New project: `./vibe init /path/to/project`  
-Agent settings preview: `./vibe settings /path/to/project`  
-Apply safe adapters: `./vibe settings /path/to/project --apply`  
-Health: `./vibe doctor`  
-Update proposal: `./vibe update`
+```bash
+# Install only the safe baseline
+./vibe install --profile safe
 
-`vibe settings` preserves existing project rules, uses `AGENTS.md` as the canonical cross-agent contract, creates only thin provider-native adapters, and is dry-run by default. Existing provider files are never silently replaced; supported changes are backed up before modification. See `docs/agent-settings.md`.
+# Or install the pinned frontend sources
+./vibe install --profile frontend
 
-Core rules: one control plane; installed != loaded; executable Git dependencies are commit-pinned; discoveries are quarantined before promotion; official sources first; third-party skills are untrusted supply-chain input.
+# Fingerprint a project
+./vibe init /path/to/project
 
-## Curated high-value capability layer
-Current high-priority additions include Superpowers (skills only), Caveman, Serena, Trail of Bits skills, Snyk Agent Scan, Context7, Vercel Agent Browser, OpenRewrite, ast-grep and task-scoped AI/ML skills. Candidates are tracked even when not generically installed: **active != always loaded**, and **candidate != trusted executable**.
+# Preview/apply thin provider adapters
+./vibe settings /path/to/project
+./vibe settings /path/to/project --apply
+
+# Preview/apply portable skill projections
+./vibe skills /path/to/project
+./vibe skills /path/to/project --providers qwen,claude --apply
+
+# Route a compound task
+./vibe route --project /path/to/project --task "audit and animate the landing page for SEO and accessibility"
+
+# Integrity / regression checks
+./vibe doctor
+./vibe validate
+./vibe benchmark
+
+# Review candidate promotion queue; never auto-promotes
+./vibe update
+```
+
+## What routing returns
+
+`vibe route` returns a base profile plus **multiple capabilities**, task specialists, independent verification steps, risk level and a context budget. A task can therefore resolve to `frontend + marketing + testing + debugging` instead of being forced into one coarse profile.
+
+## Curated overlap policy
+
+Large systems such as ECC, Context Mode, Impeccable and context-engineering skill collections are curated without automatically becoming another operating system:
+
+- **ECC:** selective procedures/reference only under Hermes; never full-harness co-activation.
+- **Context Mode / Headroom:** benchmark candidates for context/tool-output optimization.
+- **Impeccable:** frontend audit/verification specialist, not another always-on design baseline.
+- **Agent Skills for Context Engineering:** individual task-scoped skills only.
+
+See `manifests/activation.json`, `manifests/providers.json`, `manifests/routing.json`, and `manifests/curation-policy.json` for the machine-readable rules.
