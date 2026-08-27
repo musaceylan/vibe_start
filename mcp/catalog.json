@@ -1,5 +1,64 @@
 {
-  "schemaVersion": 1,
-  "profiles": {"minimal":[],"github":["github"],"frontend":["playwright"],"browser":["playwright"],"security":[],"research":[]},
-  "policy": "task-scoped only"
+  "schemaVersion": 2,
+  "policy": "task-scoped only; registry entries describe selection and risk, never imply automatic installation or authorization",
+  "profiles": {
+    "minimal": [],
+    "github": ["github"],
+    "frontend": ["playwright-mcp"],
+    "browser-debug": ["chrome-devtools-mcp"],
+    "research": ["context7"],
+    "context-benchmark": ["context-mode"]
+  },
+  "servers": {
+    "github": {
+      "role": "repository read/write",
+      "contextCost": "medium",
+      "networkRequired": true,
+      "writes": true,
+      "credentialsRequired": true,
+      "privacyRisk": "repository-dependent",
+      "activation": "task-scoped"
+    },
+    "playwright-mcp": {
+      "role": "agent-driven browser interaction and E2E",
+      "contextCost": "medium-high",
+      "networkRequired": "task-dependent",
+      "writes": false,
+      "credentialsRequired": "task-dependent",
+      "privacyRisk": "browser-session-dependent",
+      "activation": "task-scoped",
+      "preferWhen": ["agent must directly operate browser", "interactive browser state is required"]
+    },
+    "chrome-devtools-mcp": {
+      "role": "browser runtime/network/performance diagnostics",
+      "contextCost": "medium-high",
+      "networkRequired": "task-dependent",
+      "writes": false,
+      "credentialsRequired": "task-dependent",
+      "privacyRisk": "browser-session-dependent",
+      "activation": "debugging-only",
+      "preferWhen": ["console/runtime diagnostics", "network waterfall", "browser performance profiling"]
+    },
+    "context7": {
+      "role": "current external library/framework documentation",
+      "contextCost": "low-medium",
+      "networkRequired": true,
+      "writes": false,
+      "credentialsRequired": false,
+      "privacyRisk": "low",
+      "activation": "documentation-task-scoped"
+    },
+    "context-mode": {
+      "role": "tool-output offload, indexed continuity and context optimization",
+      "contextCost": "low after setup",
+      "networkRequired": false,
+      "writes": true,
+      "credentialsRequired": false,
+      "privacyRisk": "local-indexed-project-data",
+      "hooks": true,
+      "activation": "benchmark-opt-in",
+      "conflictsWith": ["other context proxy/offload layers"],
+      "guardrail": "do not enable automatically; benchmark success quality as well as token reduction"
+    }
+  }
 }
