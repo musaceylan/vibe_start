@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {"task":"fix a backend API bug","profile":"backend","capabilities":["backend","debugging","testing"],"specialists":[]},
+    {"task":"redesign the Next.js landing page with GSAP and Playwright visual regression","profile":"frontend","capabilities":["frontend","testing"],"specialists":["greensock/gsap-skills","microsoft/playwright"]},
+    {"task":"audit the Next.js landing page for SEO and accessibility","profile":"frontend","capabilities":["frontend","marketing"],"specialists":["AgriciDaniel/claude-seo"]},
+    {"task":"evaluate RAG faithfulness and answer relevancy with DeepEval","profile":"ai-ml","capabilities":["ai-ml"],"specialists":["confident-ai/deepeval"]},
+    {"task":"compare Promptfoo and DeepEval for our RAG evaluation suite","profile":"ai-ml","capabilities":["ai-ml"],"specialists":["promptfoo/promptfoo","confident-ai/deepeval"]},
+    {"task":"simplify this C++ module and reduce unnecessary abstractions","profile":"cpp","capabilities":["cpp","refactoring"],"specialists":["DietrichGebert/ponytail"]},
+    {"task":"reduce tool output context using context-mode","profile":"minimal","capabilities":["context-engineering"],"specialists":["mksglu/context-mode"]}
+  ]
+}
