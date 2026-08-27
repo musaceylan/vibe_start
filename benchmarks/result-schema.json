@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "vibe_start benchmark result",
+  "type": "object",
+  "required": ["mode","taskId","success"],
+  "properties": {
+    "mode": {"type":"string","enum":["plain","vibe"]},
+    "taskId": {"type":"string"},
+    "success": {"type":"boolean"},
+    "tokens": {"type":"number","minimum":0},
+    "contextLoadedTokens": {"type":"number","minimum":0},
+    "toolCalls": {"type":"number","minimum":0},
+    "duplicateReads": {"type":"number","minimum":0},
+    "latencyMs": {"type":"number","minimum":0},
+    "testsPassed": {"type":"boolean"},
+    "defects": {"type":"number","minimum":0},
+    "rework": {"type":"number","minimum":0},
+    "notes": {"type":"string"}
+  }
+}
