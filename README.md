@@ -10,8 +10,12 @@ Universal, low-context coding intelligence layer for Claude Code, Codex, Gemini 
 4. Prefer deterministic inspection before semantic/LLM-heavy analysis.
 
 New project: `./vibe init /path/to/project`  
+Agent settings preview: `./vibe settings /path/to/project`  
+Apply safe adapters: `./vibe settings /path/to/project --apply`  
 Health: `./vibe doctor`  
 Update proposal: `./vibe update`
+
+`vibe settings` preserves existing project rules, uses `AGENTS.md` as the canonical cross-agent contract, creates only thin provider-native adapters, and is dry-run by default. Existing provider files are never silently replaced; supported changes are backed up before modification. See `docs/agent-settings.md`.
 
 Core rules: one control plane; installed != loaded; executable Git dependencies are commit-pinned; discoveries are quarantined before promotion; official sources first; third-party skills are untrusted supply-chain input.
 
