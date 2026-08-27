@@ -46,6 +46,16 @@ def ensure_link(link: Path, target: Path, apply: bool) -> dict:
     return result
 
 
+def skill_applies(skill: dict, profile: str, frameworks: set[str]) -> tuple[bool, str | None]:
+    profiles = set(skill.get("profiles", []))
+    if profile != "full" and profile not in profiles:
+        return False, "profile-not-selected"
+    required = set(skill.get("whenFrameworks", []))
+    if required and not required.intersection(frameworks):
+        return False, "framework-condition-unmet"
+    return True, None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Project selected vibe_start skills into cross-agent skill roots")
     parser.add_argument("target", nargs="?", default=".")
@@ -61,22 +71,24 @@ def main() -> int:
 
     vibe_home = Path(os.environ.get("VIBE_HOME", str(Path.home() / ".vibe"))).expanduser().resolve()
     skills_manifest = load_json(repo_root / "manifests/skills.json")
+    project_meta_path = project / ".vibe/project.json"
+    project_meta = load_json(project_meta_path) if project_meta_path.exists() else {}
+    frameworks = set(project_meta.get("frameworks", []))
 
     profile = args.profile
-    project_meta = project / ".vibe/project.json"
     if profile == "auto":
-        profile = "minimal"
-        if project_meta.exists():
-            profile = load_json(project_meta).get("profile", "minimal")
+        profile = project_meta.get("profile", "minimal")
 
     canonical = project / skills_manifest.get("canonicalRoot", ".agents/skills")
     if args.apply:
         canonical.mkdir(parents=True, exist_ok=True)
 
     selected = []
+    selected_names: set[str] = set()
     for skill in skills_manifest.get("portableSkills", []):
-        profiles = skill.get("profiles", [])
-        if profile != "full" and profile not in profiles:
+        applies, reason = skill_applies(skill, profile, frameworks)
+        if not applies:
+            selected.append({"name": skill["name"], "action": "skipped", "reason": reason})
             continue
         source_root = source_repo_path(vibe_home, skill["source"])
         if source_root is None:
@@ -90,8 +102,11 @@ def main() -> int:
         result["name"] = skill["name"]
         result["source"] = skill["source"]
         selected.append(result)
+        if result["action"] not in {"preserved-existing", "conflict-existing-symlink"}:
+            selected_names.add(skill["name"])
+        elif (canonical / skill["name"]).exists() or (canonical / skill["name"]).is_symlink():
+            selected_names.add(skill["name"])
 
-    providers: list[str]
     if args.providers == "auto":
         providers = []
         if (project / "QWEN.md").exists() or (project / ".qwen").exists():
@@ -110,22 +125,20 @@ def main() -> int:
             continue
         if args.apply:
             root.mkdir(parents=True, exist_ok=True)
-        for skill in skills_manifest.get("portableSkills", []):
-            profiles = skill.get("profiles", [])
-            if profile != "full" and profile not in profiles:
-                continue
-            canonical_skill = canonical / skill["name"]
+        for name in sorted(selected_names):
+            canonical_skill = canonical / name
             if not canonical_skill.exists() and not canonical_skill.is_symlink():
                 continue
-            result = ensure_link(root / skill["name"], canonical_skill, args.apply)
+            result = ensure_link(root / name, canonical_skill, args.apply)
             result["provider"] = provider
-            result["name"] = skill["name"]
+            result["name"] = name
             projections.append(result)
 
     print(json.dumps({
         "ok": True,
         "mode": "apply" if args.apply else "dry-run",
         "profile": profile,
+        "frameworks": sorted(frameworks),
         "target": str(project),
         "canonicalRoot": str(canonical),
         "nativeConsumers": ["codex", "kimi"],
