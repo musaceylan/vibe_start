@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; cmd="${1:-help}"; shift || true
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cmd="${1:-help}"
+shift || true
 case "$cmd" in
-  init) exec "$ROOT/scripts/init-project.sh" "${1:-.}";;
-  doctor) exec "$ROOT/scripts/doctor.sh";;
-  update) exec "$ROOT/scripts/update-curation.sh";;
-  route) exec python3 "$ROOT/scripts/route.py" "$@";;
-  settings) exec python3 "$ROOT/scripts/configure-agents.py" "$@";;
-  install) exec "$ROOT/install.sh" "$@";;
-  *) echo 'usage: vibe {init|doctor|update|route|settings|install}';;
+  init) exec "$ROOT/scripts/init-project.sh" "${1:-.}" ;;
+  doctor) exec "$ROOT/scripts/doctor.sh" ;;
+  validate) exec "$ROOT/scripts/validate.sh" ;;
+  update) exec "$ROOT/scripts/update-curation.sh" "$@" ;;
+  route) exec python3 "$ROOT/scripts/route.py" "$@" ;;
+  settings) exec python3 "$ROOT/scripts/configure-agents.py" "$@" ;;
+  skills) exec python3 "$ROOT/scripts/sync-skills.py" "$@" ;;
+  benchmark) exec "$ROOT/scripts/benchmark-context.sh" "$@" ;;
+  install) exec "$ROOT/install.sh" "$@" ;;
+  *) echo 'usage: vibe {init|doctor|validate|update|route|settings|skills|benchmark|install}' ;;
 esac
