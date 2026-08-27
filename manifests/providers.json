@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "canonicalPolicy": "AGENTS.md",
+  "canonicalSkillRoot": ".agents/skills",
+  "policy": "provider adapters are thin; provider-native files never replace canonical project policy",
+  "providers": {
+    "generic": {
+      "policyMode": "agents-md",
+      "skillMode": "generic-agent-skills",
+      "skillRoots": [".agents/skills"],
+      "verified": true
+    },
+    "claude": {
+      "policyMode": "thin-adapter",
+      "adapterPath": "CLAUDE.md",
+      "skillMode": "projection",
+      "skillRoots": [".claude/skills"],
+      "verified": true
+    },
+    "codex": {
+      "policyMode": "native-agents-md",
+      "skillMode": "native-generic",
+      "skillRoots": [".agents/skills", ".codex/skills"],
+      "verified": true,
+      "evidence": "openai/codex repo skill discovery includes repo .agents/skills"
+    },
+    "kimi": {
+      "policyMode": "native-agents-md",
+      "skillMode": "native-generic",
+      "skillRoots": [".agents/skills", ".kimi/skills"],
+      "verified": true,
+      "evidence": "MoonshotAI/kimi-cli documents project .agents/skills and uses AGENTS.md for project initialization"
+    },
+    "qwen": {
+      "policyMode": "native-agents-md",
+      "optionalContextPath": "QWEN.md",
+      "skillMode": "projection",
+      "skillRoots": [".qwen/skills"],
+      "verified": true,
+      "evidence": "QwenLM/qwen-code documents .qwen/skills and explicitly reads existing AGENTS.md"
+    },
+    "gemini": {
+      "policyMode": "thin-adapter",
+      "adapterPath": "GEMINI.md",
+      "skillMode": "provider-native-or-manual",
+      "skillRoots": [],
+      "verified": true
+    },
+    "cursor": {
+      "policyMode": "thin-adapter",
+      "adapterPath": ".cursor/rules/vibe-start.mdc",
+      "skillMode": "provider-native-or-manual",
+      "skillRoots": [],
+      "verified": true
+    },
+    "copilot": {
+      "policyMode": "thin-adapter",
+      "adapterPath": ".github/copilot-instructions.md",
+      "skillMode": "provider-native-or-manual",
+      "skillRoots": [],
+      "verified": true
+    },
+    "hermes": {
+      "policyMode": "orchestrator-bridge",
+      "adapterPath": "config/hermes/README.md",
+      "skillMode": "selective",
+      "skillRoots": [".agents/skills"],
+      "verified": true
+    },
+    "opencode": {
+      "policyMode": "agents-md-compatible-manual",
+      "skillMode": "manual-until-verified",
+      "skillRoots": [],
+      "verified": false
+    }
+  }
+}
