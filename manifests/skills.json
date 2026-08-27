@@ -15,9 +15,9 @@
     {"name":"ui-ux-pro-max","source":"nextlevelbuilder/ui-ux-pro-max-skill","path":".claude/skills/ui-ux-pro-max","profiles":["frontend","full"]},
     {"name":"taste-skill","source":"Leonxlnx/taste-skill","path":"skills/taste-skill","profiles":["frontend","full"],"note":"v2 experimental; specialized variants remain on-demand"},
     {"name":"vercel-web-design-guidelines","source":"vercel-labs/agent-skills","path":"skills/web-design-guidelines","profiles":["frontend","full"]},
-    {"name":"vercel-react-best-practices","source":"vercel-labs/agent-skills","path":"skills/react-best-practices","profiles":["frontend","full"]},
-    {"name":"vercel-composition-patterns","source":"vercel-labs/agent-skills","path":"skills/composition-patterns","profiles":["frontend","full"]},
-    {"name":"vercel-react-native-skills","source":"vercel-labs/agent-skills","path":"skills/react-native-skills","profiles":["mobile","full"],"optional":true}
+    {"name":"vercel-react-best-practices","source":"vercel-labs/agent-skills","path":"skills/react-best-practices","profiles":["frontend","full"],"whenFrameworks":["react","next.js","react-native","expo"]},
+    {"name":"vercel-composition-patterns","source":"vercel-labs/agent-skills","path":"skills/composition-patterns","profiles":["frontend","full"],"whenFrameworks":["react","next.js","react-native","expo"]},
+    {"name":"vercel-react-native-skills","source":"vercel-labs/agent-skills","path":"skills/react-native-skills","profiles":["frontend","full"],"whenFrameworks":["react-native","expo"],"optional":true}
   ],
   "frontendTaskSkills": [
     {"source":"Leonxlnx/taste-skill","skill":"skills/taste-skill","note":"load for frontend design/build; variants only when task matches"},
