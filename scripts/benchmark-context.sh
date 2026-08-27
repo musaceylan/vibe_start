@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
-printf "%s\n" "Compare plain agent vs vibe_start: tokens before useful change; context loaded; files/duplicate reads; tool calls; time; tests; review defects; rework; compression retention/accuracy/hallucination/token reduction/latency."
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec python3 "$ROOT/scripts/benchmark.py" "$@"
