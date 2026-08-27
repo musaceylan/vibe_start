@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "policy": "semantic events are canonical; provider adapters may map them only after current official hook syntax is verified",
+  "events": {
+    "session.start": {"mode":"always","purpose":"load canonical policy pointer and minimal project fingerprint","maxRuntimeMs":200,"failure":"open"},
+    "task.route": {"mode":"always","purpose":"resolve smallest capability set and context budget","maxRuntimeMs":300,"failure":"open"},
+    "before.tool": {"mode":"always","purpose":"block obvious destructive/credential-risk actions and enforce task-scoped tools","maxRuntimeMs":100,"failure":"closed-for-high-risk-only"},
+    "after.tool": {"mode":"conditional","purpose":"record compact evidence or metrics without dumping raw tool output into memory","maxRuntimeMs":150,"failure":"open"},
+    "before.compact": {"mode":"conditional","purpose":"persist only durable task state and decisions","maxRuntimeMs":300,"failure":"open"},
+    "before.commit": {"mode":"conditional","purpose":"status/diff/secret/test gate before commit","maxRuntimeMs":2000,"failure":"closed"},
+    "after.test": {"mode":"conditional","purpose":"capture pass/fail evidence and route remaining failures","maxRuntimeMs":200,"failure":"open"},
+    "task.complete": {"mode":"conditional","purpose":"verify requested outcome and persist only durable discoveries","maxRuntimeMs":500,"failure":"open"}
+  },
+  "providerMapping": {
+    "claude": "adapter-required; verify current native hook names before rendering",
+    "gemini": "adapter-required; verify current native hook names before rendering",
+    "qwen": "adapter-required; verify current native hook names before rendering",
+    "kimi": "prefer skills/plugins and canonical policy; do not invent unsupported hooks",
+    "codex": "use native capabilities only when verified; otherwise semantic events remain advisory",
+    "cursor": "provider rule integration only when verified",
+    "hermes": "orchestrator may implement semantic lifecycle events directly"
+  }
+}
