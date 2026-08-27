@@ -1,8 +1,19 @@
 {
   "schemaVersion": 1,
   "format": "SKILL.md where supported",
-  "loading": "on-demand",
+  "loading": "hybrid",
   "providerCopies": false,
   "security": "quarantine before activation",
-  "sources": ["vercel-labs/agent-skills","trailofbits/skills","nextlevelbuilder/ui-ux-pro-max-skill","MengTo/Skills","anthropics/skills (reference/license-aware)"]
+  "alwaysActive": [
+    {"source":"anthropics/skills","skill":"skills/frontend-design"},
+    {"source":"nextlevelbuilder/ui-ux-pro-max-skill","skill":".claude/skills/ui-ux-pro-max"}
+  ],
+  "sources": [
+    "vercel-labs/agent-skills",
+    "trailofbits/skills",
+    "nextlevelbuilder/ui-ux-pro-max-skill",
+    "VoltAgent/awesome-design-md",
+    "MengTo/Skills",
+    "anthropics/skills"
+  ]
 }
