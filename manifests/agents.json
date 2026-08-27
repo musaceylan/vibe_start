@@ -1,11 +1,17 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "canonicalPolicy": "AGENTS.md",
+  "canonicalSkills": ".agents/skills",
   "agents": {
-    "claude": {"canonical": "AGENTS.md", "adapter": "config/claude/README.md", "policy": "thin-adapter"},
-    "codex": {"canonical": "AGENTS.md", "adapter": "config/codex/README.md", "policy": "thin-adapter"},
-    "gemini": {"canonical": "AGENTS.md", "adapter": "config/gemini/README.md", "policy": "thin-adapter"},
-    "cursor": {"canonical": "AGENTS.md", "adapter": "config/cursor/README.md", "policy": "thin-adapter"},
-    "copilot": {"canonical": "AGENTS.md", "adapter": "config/copilot/README.md", "policy": "thin-adapter"},
-    "hermes": {"canonical": "AGENTS.md", "adapter": "config/hermes/README.md", "policy": "thin-adapter"}
+    "claude": {"canonical":"AGENTS.md","adapter":"config/claude/README.md","policy":"thin-adapter","skills":".claude/skills projection"},
+    "codex": {"canonical":"AGENTS.md","adapter":"config/codex/README.md","policy":"native-agents-md","skills":".agents/skills native"},
+    "kimi": {"canonical":"AGENTS.md","adapter":"config/kimi/README.md","policy":"native-agents-md","skills":".agents/skills native"},
+    "qwen": {"canonical":"AGENTS.md","adapter":"config/qwen/README.md","policy":"native-agents-md; optional QWEN.md remains provider-specific","skills":".qwen/skills projection"},
+    "gemini": {"canonical":"AGENTS.md","adapter":"config/gemini/README.md","policy":"thin-adapter"},
+    "cursor": {"canonical":"AGENTS.md","adapter":"config/cursor/README.md","policy":"thin-adapter"},
+    "copilot": {"canonical":"AGENTS.md","adapter":"config/copilot/README.md","policy":"thin-adapter"},
+    "hermes": {"canonical":"AGENTS.md","adapter":"config/hermes/README.md","policy":"global-orchestrator-bridge","skills":"select from canonical skill layer"},
+    "opencode": {"canonical":"AGENTS.md","adapter":"config/opencode/README.md","policy":"manual compatibility until provider syntax is verified"},
+    "generic": {"canonical":"AGENTS.md","adapter":null,"policy":"read START_HERE.md then AGENTS.md","skills":"read selected .agents/skills entries when native discovery is unavailable"}
   }
 }
