@@ -1,11 +1,27 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "selection": "prefer deterministic low-context tools; choose one owner per job before escalating",
   "tiers": {
     "always": ["git","rg","find","jq"],
     "structural": ["Serena/LSP","ast-grep","ctags","tree-sitter"],
-    "security": ["snyk agent-scan","gitleaks","semgrep","codeql","trivy/osv-scanner"],
-    "browser": ["agent-browser","playwright"],
+    "security": ["snyk agent-scan","gitleaks","semgrep","codeql","trivy/osv-scanner","prowler-cloud/prowler for cloud posture"],
+    "browser-interaction": ["agent-browser","playwright"],
+    "browser-debug": ["Chrome DevTools MCP"],
+    "frontend-qa": ["Impeccable deterministic detectors","Playwright","Storybook when present"],
     "refactoring": ["ast-grep","OpenRewrite","jscodeshift","ts-morph"],
-    "benchmark": ["hyperfine"]
+    "ai-evaluation": ["Promptfoo for prompt/agent comparison and red-team","DeepEval for LLM/RAG metrics","MLflow for experiment/model lifecycle"],
+    "context": ["qmd for local retrieval","Context Mode benchmark-opt-in","Headroom benchmark-candidate"],
+    "benchmark": ["hyperfine","vibe benchmark fixtures"]
+  },
+  "contextCost": {
+    "git": "low",
+    "rg": "low",
+    "Serena/LSP": "low-medium",
+    "ast-grep": "low-medium",
+    "agent-browser": "low-medium",
+    "playwright": "medium",
+    "Chrome DevTools MCP": "medium-high",
+    "repo-harness": "high",
+    "Understand-Anything": "high"
   }
 }
