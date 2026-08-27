@@ -1,7 +1,10 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "projectStore": ".vibe/memory.jsonl",
-  "fields": ["scope","source","timestamp","confidence","expiresAt","tags","content"],
-  "forbidden": ["api keys","passwords","tokens","credentials","raw transcripts","temporary logs","duplicates"],
-  "retrieval": "task-filtered"
+  "requiredForNewRecords": ["scope","source","timestamp","confidence","kind","sensitivity","verificationStatus","tags","content"],
+  "kinds": ["fact","decision","preference","failed-attempt","architecture-constraint","task-state","reference"],
+  "fields": ["scope","source","timestamp","confidence","kind","project","branch","evidence","supersedes","validUntil","expiresAt","lastVerified","sensitivity","verificationStatus","retrievalHints","writeReason","tags","content"],
+  "forbidden": ["api keys","passwords","tokens","credentials","private keys","raw transcripts","temporary logs","tool noise","duplicates"],
+  "retrieval": "task-filtered; prefer verified durable records; task-state expires aggressively",
+  "writePolicy": "store only durable reusable knowledge with an explicit reason; facts and constraints should carry evidence when practical"
 }
