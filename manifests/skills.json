@@ -8,10 +8,14 @@
     {"source":"anthropics/skills","skill":"skills/frontend-design"},
     {"source":"nextlevelbuilder/ui-ux-pro-max-skill","skill":".claude/skills/ui-ux-pro-max"}
   ],
+  "frontendTaskSkills": [
+    {"source":"Leonxlnx/taste-skill","skill":"skills/taste-skill","note":"v2 experimental; load for frontend design/build tasks; specialized variants on-demand"}
+  ],
   "sources": [
     "vercel-labs/agent-skills",
     "trailofbits/skills",
     "nextlevelbuilder/ui-ux-pro-max-skill",
+    "Leonxlnx/taste-skill",
     "VoltAgent/awesome-design-md",
     "MengTo/Skills",
     "anthropics/skills"
