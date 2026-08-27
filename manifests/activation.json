@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "principle": "overlap does not imply exclusion; assign one owner, task specialists, benchmark candidates, and explicit non-coactivation rules",
+  "owners": {
+    "orchestration": ["Hermes"],
+    "repository-execution": ["Ancienttwo/repo-harness"],
+    "repository-understanding": ["ripgrep", "Serena", "ast-grep"],
+    "frontend-create": ["anthropics/frontend-design", "nextlevelbuilder/ui-ux-pro-max-skill"],
+    "frontend-taste": ["Leonxlnx/taste-skill"],
+    "frontend-motion": ["greensock/gsap-skills"],
+    "frontend-qa": ["pbakaus/impeccable", "microsoft/playwright"],
+    "browser-debug": ["ChromeDevTools/chrome-devtools-mcp"],
+    "seo-geo-aeo": ["AgriciDaniel/claude-seo"],
+    "marketing": ["coreyhaines31/marketingskills"],
+    "prompt-agent-eval": ["promptfoo/promptfoo"],
+    "llm-rag-eval": ["confident-ai/deepeval"],
+    "ml-lifecycle": ["mlflow/mlflow"],
+    "context-output-efficiency": ["JuliusBrussee/caveman"],
+    "context-principles": ["muratcankoylan/Agent-Skills-for-Context-Engineering"],
+    "context-tool-offload": ["mksglu/context-mode"],
+    "code-review": ["alibaba/open-code-review"],
+    "cloud-security": ["prowler-cloud/prowler"]
+  },
+  "activation": {
+    "affaan-m/ECC": {"mode":"reference-selective","reason":"extract isolated skills/procedures; do not install full harness under Hermes"},
+    "mksglu/context-mode": {"mode":"benchmark-opt-in","reason":"valuable tool-output offload and continuity, but hooks/MCP can alter routing"},
+    "pbakaus/impeccable": {"mode":"task-specialist","reason":"use deterministic UI audit/verification; not another always-on design philosophy"},
+    "muratcankoylan/Agent-Skills-for-Context-Engineering": {"mode":"skills-only-on-demand","reason":"progressive-disclosure context/harness knowledge; never a competing control plane"},
+    "headroomlabs-ai/headroom": {"mode":"benchmark-candidate","reason":"evaluate context compression against Context Mode and native routing before activation"}
+  },
+  "neverCoActivate": [
+    {
+      "group": "global-control-plane",
+      "members": ["Hermes", "ECC-full-harness", "BMAD", "ruflo", "oh-my-claudecode", "claude-task-master", "ralph"],
+      "maxActive": 1
+    },
+    {
+      "group": "default-llm-eval",
+      "members": ["promptfoo/promptfoo", "confident-ai/deepeval"],
+      "maxActive": 1,
+      "exception": "explicit comparative evaluation"
+    },
+    {
+      "group": "context-proxy",
+      "members": ["Caveman-proxy", "mksglu/context-mode", "headroom-proxy"],
+      "maxActive": 1,
+      "exception": "controlled benchmark"
+    }
+  ],
+  "frontendPipeline": {
+    "create": ["anthropics/frontend-design", "nextlevelbuilder/ui-ux-pro-max-skill", "Leonxlnx/taste-skill"],
+    "animate": ["greensock/gsap-skills"],
+    "inspect": ["pbakaus/impeccable"],
+    "verify": ["microsoft/playwright", "accessibility", "project-native-tests"]
+  }
+}
