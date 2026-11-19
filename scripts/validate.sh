@@ -30,6 +30,8 @@ for case in fixtures:
 print(f"router fixtures OK: {len(fixtures)}")
 PY
 
+python3 -m unittest discover -q -s "$ROOT/tests" -p 'test_*.py'
+
 "$ROOT/install.sh" --dry-run --profile safe >/dev/null
 "$ROOT/install.sh" --dry-run --profile frontend >/dev/null
 

@@ -19,19 +19,37 @@
     "context-principles": ["muratcankoylan/Agent-Skills-for-Context-Engineering"],
     "context-tool-offload": ["mksglu/context-mode"],
     "code-review": ["alibaba/open-code-review"],
-    "cloud-security": ["prowler-cloud/prowler"]
+    "cloud-security": ["prowler-cloud/prowler"],
+    "web-platform-guidance": ["GoogleChrome/modern-web-guidance"],
+    "google-product-skills": ["google/skills"],
+    "design-spec-review": ["Hermes"],
+    "design-generation-pilot": ["google-labs-code/stitch-skills"],
+    "generative-ui": ["a2ui-project/a2ui"],
+    "agent-ui-transport": ["ag-ui-protocol/ag-ui"],
+    "robotics-physics-simulation": ["google-deepmind/mujoco"],
+    "ai-text-detection-research": ["google-deepmind/detectorscope"],
+    "formal-verification-research": ["google-deepmind/code-verification"]
   },
   "activation": {
     "affaan-m/ECC": {"mode":"reference-selective","reason":"extract isolated skills/procedures; do not install full harness under Hermes"},
     "mksglu/context-mode": {"mode":"benchmark-opt-in","reason":"valuable tool-output offload and continuity, but hooks/MCP can alter routing"},
     "pbakaus/impeccable": {"mode":"task-specialist","reason":"use deterministic UI audit/verification; not another always-on design philosophy"},
     "muratcankoylan/Agent-Skills-for-Context-Engineering": {"mode":"skills-only-on-demand","reason":"progressive-disclosure context/harness knowledge; never a competing control plane"},
-    "headroomlabs-ai/headroom": {"mode":"benchmark-candidate","reason":"evaluate context compression against Context Mode and native routing before activation"}
+    "headroomlabs-ai/headroom": {"mode":"benchmark-candidate","reason":"evaluate context compression against Context Mode and native routing before activation"},
+    "GoogleChrome/modern-web-guidance": {"mode":"read-only-on-demand","reason":"exact-pinned guidance for browser compatibility, modern HTML/CSS, accessibility, Core Web Vitals, PWA, Web Components and WebMCP; installed only by frontend/full profiles and dormant unless routed"},
+    "google/skills": {"mode":"skills-only-on-demand","reason":"select individual Google-product skills per task; never bulk-activate or project the whole catalog"},
+    "hermes:fresh-context-design-review": {"mode":"hermes-local-procedure","procedure":"docs/procedures/fresh-context-design-review.md","reason":"explicit fresh-context review invocation only: one writer, stateless reviewers, Hermes reconciliation, human approval before implementation"},
+    "google/elephant-goldfish-model": {"mode":"reference-only","reason":"provenance for the local fresh-context design-review procedure; never install or activate its plugin or orchestration"},
+    "google-labs-code/stitch-skills": {"mode":"candidate-project-pilot","procedure":"docs/procedures/stitch-project-pilot.md","reason":"no global install; one isolated project-local pilot gated by Stitch MCP credentials and user approval before any external upload"},
+    "a2ui-project/a2ui": {"mode":"project-specific-reference","procedure":"docs/procedures/a2ui-react-spike.md","reason":"primary for A2UI/generative UI with AG-UI secondary for transport; bounded read-only React spike before adoption"},
+    "google-deepmind/mujoco": {"mode":"deferred-reference","reason":"robotics/physics/RL/simulation tasks only; MuJoCo 4.0.1+ and an isolated uv/Jetson compatibility benchmark before any project install; no general install"},
+    "google-deepmind/detectorscope": {"mode":"research-only","reason":"interpretable AI-text detection analysis only; never adjudicate education, hiring, admissions, enforcement, takedowns or user accusations; no general install"},
+    "google-deepmind/code-verification": {"mode":"formal-methods-reference","reason":"Lean/AArch64/libsignal/formal crypto verification research only; not a general code-security verifier; no general install"}
   },
   "neverCoActivate": [
     {
       "group": "global-control-plane",
-      "members": ["Hermes", "ECC-full-harness", "BMAD", "ruflo", "oh-my-claudecode", "claude-task-master", "ralph"],
+      "members": ["Hermes", "ECC-full-harness", "BMAD", "ruflo", "oh-my-claudecode", "claude-task-master", "ralph", "elephant-goldfish-full-plugin"],
       "maxActive": 1
     },
     {

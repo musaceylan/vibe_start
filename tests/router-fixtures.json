@@ -7,6 +7,13 @@
     {"task":"evaluate RAG faithfulness and answer relevancy with DeepEval","profile":"ai-ml","capabilities":["ai-ml"],"specialists":["confident-ai/deepeval"]},
     {"task":"compare Promptfoo and DeepEval for our RAG evaluation suite","profile":"ai-ml","capabilities":["ai-ml"],"specialists":["promptfoo/promptfoo","confident-ai/deepeval"]},
     {"task":"simplify this C++ module and reduce unnecessary abstractions","profile":"cpp","capabilities":["cpp","refactoring"],"specialists":["DietrichGebert/ponytail"]},
-    {"task":"reduce tool output context using context-mode","profile":"minimal","capabilities":["context-engineering"],"specialists":["mksglu/context-mode"]}
+    {"task":"reduce tool output context using context-mode","profile":"minimal","capabilities":["context-engineering"],"specialists":["mksglu/context-mode"]},
+    {"task":"improve Core Web Vitals and browser compatibility for the React storefront","profile":"frontend","capabilities":["frontend"],"specialists":["GoogleChrome/modern-web-guidance"]},
+    {"task":"run a fresh-context design review of the payments service spec before implementation","profile":"minimal","capabilities":[],"specialists":["hermes:fresh-context-design-review"]},
+    {"task":"pilot Google Stitch for one onboarding screen in the React app","profile":"frontend","capabilities":["frontend"],"specialists":["google-labs-code/stitch-skills"]},
+    {"task":"prototype A2UI generative UI result cards in the React app","profile":"frontend","capabilities":["frontend","agent-ui"],"specialists":["a2ui-project/a2ui"]},
+    {"task":"train a reinforcement learning agent for a robot arm in MuJoCo physics simulation","profile":"minimal","capabilities":[],"specialists":["google-deepmind/mujoco"]},
+    {"task":"analyze which features DetectorScope uses to separate AI-generated text from human writing","profile":"minimal","capabilities":[],"specialists":[]},
+    {"task":"formally verify the AArch64 assembly of the X25519 implementation in Lean","profile":"minimal","capabilities":[],"specialists":["google-deepmind/code-verification"]}
   ]
 }

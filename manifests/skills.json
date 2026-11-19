@@ -22,7 +22,8 @@
   "frontendTaskSkills": [
     {"source":"Leonxlnx/taste-skill","skill":"skills/taste-skill","note":"load for frontend design/build; variants only when task matches"},
     {"source":"greensock/gsap-skills","note":"load for GSAP animation/motion only"},
-    {"source":"pbakaus/impeccable","note":"verification/audit specialist; do not use as another always-on design philosophy"}
+    {"source":"pbakaus/impeccable","note":"verification/audit specialist; do not use as another always-on design philosophy"},
+    {"source":"GoogleChrome/modern-web-guidance","note":"read-only guidance; load only for browser compatibility, modern HTML/CSS, accessibility, Core Web Vitals, PWA, Web Components or WebMCP tasks"}
   ],
   "specialistSources": [
     "mattpocock/skills",
@@ -52,6 +53,7 @@
     "google/skills",
     "VoltAgent/awesome-design-md",
     "MengTo/Skills",
-    "anthropics/skills"
+    "anthropics/skills",
+    "GoogleChrome/modern-web-guidance"
   ]
 }

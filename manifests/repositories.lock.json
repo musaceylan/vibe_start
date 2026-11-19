@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07",
+  "generatedAt": "2026-11-19",
   "policy": "install=true requires an exact 40-char commit pin and installProfiles; reference/candidate/benchmark entries are never auto-installed",
   "repositories": [
     {"repository":"NVIDIA/SkillSpector","category":"security","status":"candidate","commit":null,"install":false,"loadPolicy":"benchmark-first"},
@@ -49,7 +49,7 @@
     {"repository":"cathrynlavery/diagram-design","category":"design","status":"active-specialist","commit":null,"install":false,"loadPolicy":"task-scoped-diagrams"},
     {"repository":"promptfoo/promptfoo","category":"ai-evaluation","status":"active-tool","commit":null,"install":false,"loadPolicy":"task-scoped-prompt-agent-redteam"},
     {"repository":"alibaba/open-code-review","category":"code-review","status":"active-specialist","commit":null,"install":false,"loadPolicy":"on-demand-code-review"},
-    {"repository":"google/skills","category":"provider-skills","status":"active-reference","commit":null,"install":false,"loadPolicy":"task-scoped-google-products"},
+    {"repository":"google/skills","category":"provider-skills","status":"active-reference","commit":"06fff9e3edb7fc3c115a1769406047fcaf0a6289","install":false,"loadPolicy":"task-scoped-google-products; individual-skills-only; never-bulk-activate"},
     {"repository":"ag-ui-protocol/ag-ui","category":"agent-ui","status":"active-reference","commit":null,"install":false,"loadPolicy":"project-specific-protocol"},
     {"repository":"AgriciDaniel/claude-seo","category":"seo-geo","status":"active-specialist","commit":null,"install":false,"loadPolicy":"task-scoped-seo-geo-aeo"},
     {"repository":"pipecat-ai/pipecat","category":"voice-agents","status":"active-reference","commit":null,"install":false,"loadPolicy":"project-specific-voice-multimodal"},
@@ -73,6 +73,13 @@
     {"repository":"thedotmack/claude-mem","category":"memory","status":"optional","commit":"e2d1df569a8f04075d40e92461128ece7cf04c82","install":false,"loadPolicy":"claude-only"},
     {"repository":"mem0ai/mem0","category":"memory","status":"candidate","commit":null,"install":false,"loadPolicy":"benchmark-first"},
     {"repository":"meta/jscodeshift","category":"refactoring","status":"reference","commit":null,"install":false,"loadPolicy":"project-specific"},
-    {"repository":"dsherret/ts-morph","category":"refactoring","status":"reference","commit":null,"install":false,"loadPolicy":"project-specific"}
+    {"repository":"dsherret/ts-morph","category":"refactoring","status":"reference","commit":null,"install":false,"loadPolicy":"project-specific"},
+    {"repository":"GoogleChrome/modern-web-guidance","category":"frontend","status":"active-specialist","commit":"64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65","install":true,"installProfiles":["frontend","full"],"loadPolicy":"read-only-on-demand; dormant-unless-routed"},
+    {"repository":"google/elephant-goldfish-model","category":"workflow","status":"reference","commit":"70406c4d22cc7ea8299637c2c5b44625c48b3f08","install":false,"loadPolicy":"reference-only; local-procedure:docs/procedures/fresh-context-design-review.md; never-install-or-activate-plugin"},
+    {"repository":"google-labs-code/stitch-skills","category":"frontend","status":"candidate","commit":"4cf4db8e4143b09e40f9bc887429d81f41ab3947","install":false,"loadPolicy":"project-local-pilot-only:docs/procedures/stitch-project-pilot.md; no-global-install"},
+    {"repository":"a2ui-project/a2ui","category":"agent-ui","status":"active-reference","commit":"b4f91c26fcf62abc0720c21a65840220941d0a3f","install":false,"loadPolicy":"project-specific; primary-for-a2ui-generative-ui; read-only-react-spike:docs/procedures/a2ui-react-spike.md"},
+    {"repository":"google-deepmind/mujoco","category":"simulation","status":"reference","commit":"be581a690cdd29846bb37cda425aa5d87511e26e","install":false,"loadPolicy":"deferred; robotics-physics-rl-simulation-only; mujoco>=4.0.1; isolated-uv-jetson-benchmark-before-project-install"},
+    {"repository":"google-deepmind/detectorscope","category":"ai-ml","status":"reference","commit":"52ecc87775154b35d4550911de22faad4fc68f40","install":false,"loadPolicy":"research-only; interpretable-ai-text-detection-analysis; never-adjudicate-education-hiring-admissions-enforcement-takedowns-or-user-accusations"},
+    {"repository":"google-deepmind/code-verification","category":"formal-methods","status":"reference","commit":"b0f729accbc21a0413e7ca4e1da43fa45b5f2e1b","install":false,"loadPolicy":"formal-methods-reference-only; lean-aarch64-libsignal-crypto-verification-research; not-a-general-code-security-verifier"}
   ]
 }

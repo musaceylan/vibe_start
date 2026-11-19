@@ -69,7 +69,7 @@ Core rules:
 
 ## What routing returns
 
-`vibe route` returns a base profile plus **multiple capabilities**, task specialists, independent verification steps, risk level and a context budget. A task can therefore resolve to `frontend + marketing + testing + debugging` instead of being forced into one coarse profile.
+`vibe route` returns a base profile plus **multiple capabilities**, task specialists, independent verification steps, risk level and a context budget. A task can therefore resolve to `frontend + marketing + testing + debugging` instead of being forced into one coarse profile. A specialist backed by a local procedure also returns its absolute `procedure` path; a rule's optional `excludePatterns` veto it for look-alike tasks.
 
 ## Curated overlap policy
 
@@ -79,5 +79,14 @@ Large systems such as ECC, Context Mode, Impeccable and context-engineering skil
 - **Context Mode / Headroom:** benchmark candidates for context/tool-output optimization.
 - **Impeccable:** frontend audit/verification specialist, not another always-on design baseline.
 - **Agent Skills for Context Engineering:** individual task-scoped skills only.
+
+Google and DeepMind projects reviewed on 2026-11-19 are exact-pinned in `manifests/repositories.lock.json` with narrow routes:
+
+- **Modern Web Guidance:** read-only; installed only by the `frontend` and `full` profiles; routed only for browser compatibility, modern HTML/CSS, accessibility, Core Web Vitals, PWA, Web Components and WebMCP.
+- **Google Skills:** individual Google-product skills on demand; the catalog is never bulk-activated.
+- **Elephant-Goldfish:** reference only; its plugin is never installed. Hermes owns the local [fresh-context design review](docs/procedures/fresh-context-design-review.md), invoked only by the explicit `fresh-context review` phrase.
+- **Stitch Skills:** candidate; only the gated [project-local pilot](docs/procedures/stitch-project-pilot.md), never a global install.
+- **A2UI:** primary project-specific reference for A2UI/generative UI, AG-UI secondary; start with the bounded [read-only React spike](docs/procedures/a2ui-react-spike.md).
+- **MuJoCo, DetectorScope, Code Verification:** never installed. MuJoCo and Code Verification route only for their narrow simulation and formal-methods tasks. DetectorScope is manual-only research reference material and never auto-routes or adjudicates people or content.
 
 See `manifests/activation.json`, `manifests/providers.json`, `manifests/routing.json`, and `manifests/curation-policy.json` for the machine-readable rules.

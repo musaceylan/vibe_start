@@ -21,6 +21,10 @@ def matches(pattern: str, text: str) -> bool:
 def score_rules(rules: dict, text: str) -> dict[str, int]:
     scores: dict[str, int] = {}
     for name, spec in rules.items():
+        # Optional excludePatterns veto a rule, e.g. keep a review procedure off small fixes.
+        if any(matches(pattern, text) for pattern in spec.get("excludePatterns", [])):
+            scores[name] = 0
+            continue
         weight = int(spec.get("weight", 1))
         hits = sum(1 for pattern in spec.get("patterns", []) if matches(pattern, text))
         scores[name] = hits * weight
@@ -86,8 +90,14 @@ def main() -> int:
     specialists = []
     activation_modes = activation.get("activation", {})
     for name in specialist_names:
-        mode = specialist_specs.get(name, {}).get("mode") or activation_modes.get(name, {}).get("mode") or "task-scoped"
-        specialists.append({"name": name, "mode": mode, "score": specialist_scores[name]})
+        spec = specialist_specs.get(name, {})
+        activation_entry = activation_modes.get(name, {})
+        mode = spec.get("mode") or activation_entry.get("mode") or "task-scoped"
+        entry = {"name": name, "mode": mode, "score": specialist_scores[name]}
+        procedure = spec.get("procedure") or activation_entry.get("procedure")
+        if procedure:
+            entry["procedure"] = str(root / procedure)
+        specialists.append(entry)
 
     verification: list[str] = []
     for capability in selected:
